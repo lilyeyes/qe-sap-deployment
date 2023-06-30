@@ -1,0 +1,22 @@
+---
+- hosts: all
+  remote_user: cloudadmin
+
+  tasks:
+
+    # Appending the group 'google-sudoers' to the user's groups
+    # - name: Appending the group 'google-sudoers' to the user's groups
+    #  ansible.builtin.user:  
+    #    name: cloudadmin
+    #    groups: google-sudoers
+    #    append: yes
+
+    # Add cloudadmin into sudoers
+    - name: Add cloudadmin into sudoers
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/cloudadmin-sudoer
+        state: present
+        line: "cloudadmin ALL=(ALL:ALL) NOPASSWD:ALL"
+        #validate: /usr/sbin/visudo -cf %s
+        create: true
+        mode: '0440'
