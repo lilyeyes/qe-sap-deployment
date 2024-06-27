@@ -298,7 +298,7 @@ def ansible_command_sequence(configure_data_ansible, base_project, sequence, ver
     ssh_share[0] = ansible_bin_paths['ansible']
     ssh_share.extend([
         'all', '-a', 'true',
-        '--ssh-extra-args="-l cloudadmin -o UpdateHostKeys=yes -o StrictHostKeyChecking=accept-new"'])
+        '--ssh-extra-args=-l cloudadmin -o UpdateHostKeys=yes -o StrictHostKeyChecking=accept-new'])
     ansible_cmd_seq.append({'cmd': ssh_share})
     original_env = dict(os.environ)
     original_env['ANSIBLE_PIPELINING'] = 'True'
